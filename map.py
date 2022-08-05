@@ -1,4 +1,4 @@
-import main
+import CategorizationByUserID
 import folium
 
 data_size = len(main.sorted_data)
