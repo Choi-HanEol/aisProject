@@ -1,7 +1,7 @@
 import CategorizationByUserID
 import folium
 
-data_size = len(main.sorted_data)
+data_size = len(CategorizationByUserID.sorted_data)
 location_data = []
 color_list = ['red', 'blue', 'green', 'purple', 'orange', 'darkred',
               'lightred', 'beige', 'darkblue', 'darkgreen', 'cadetblue',
@@ -9,22 +9,22 @@ color_list = ['red', 'blue', 'green', 'purple', 'orange', 'darkred',
               'gray', 'black', 'lightgray']
 
 
-m = folium.Map(location=[main.sorted_data['Latitude'][0], main.sorted_data['Longtitude'][0]], zoom_start=4)
+m = folium.Map(location=[CategorizationByUserID.sorted_data['Latitude'][0], CategorizationByUserID.sorted_data['Longtitude'][0]], zoom_start=4)
 
 
 k=0
 
 for i in range(data_size):
 
-    folium.Circle(location=[main.sorted_data['Latitude'][i], main.sorted_data['Longtitude'][i]],
-                  popup=main.sorted_data['UTC'][i], radius=50, color=color_list[k]).add_to(m)
+    folium.Circle(location=[CategorizationByUserID.sorted_data['Latitude'][i], CategorizationByUserID.sorted_data['Longtitude'][i]],
+                  popup=CategorizationByUserID.sorted_data['UTC'][i], radius=50, color=color_list[k]).add_to(m)
 
-    location_data.append([main.sorted_data['Latitude'][i], main.sorted_data['Longtitude'][i]])
+    location_data.append([CategorizationByUserID.sorted_data['Latitude'][i], CategorizationByUserID.sorted_data['Longtitude'][i]])
 
     if(i>=data_size-1):
         folium.PolyLine(locations=location_data, tooltip='Polyline', color=color_list[k]).add_to(m)
         break
-    if(main.sorted_data['User ID'][i] != main.sorted_data['User ID'][i+1]):
+    if(CategorizationByUserID.sorted_data['User ID'][i] != CategorizationByUserID.sorted_data['User ID'][i+1]):
         folium.PolyLine(locations=location_data, tooltip='Polyline', color=color_list[k]).add_to(m)
         location_data.clear()
         k+=1
